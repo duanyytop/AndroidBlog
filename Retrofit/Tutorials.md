@@ -122,8 +122,6 @@
      }
      ```
 
-     ​
-
 30. [Retrofit 2 — How to Download Files from Server](https://futurestud.io/blog/retrofit-2-how-to-download-files-from-server)
 
 31. [Retrofit 2 — Cancel Requests](https://futurestud.io/blog/retrofit-2-cancel-requests)
@@ -144,8 +142,6 @@
      Call<ResponseBody> newCall = originalCall.clone();  
      newCall.enqueue(downloadCallback);
      ```
-
-     ​
 
 33. [Retrofit 2 — How to Change API Base Url at Runtime](https://futurestud.io/blog/retrofit-2-how-to-change-api-base-url-at-runtime-2)
 
