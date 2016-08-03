@@ -54,42 +54,75 @@
 
 28. [Retrofit 2 — Url Handling, Resolution and Parsing](https://futurestud.io/blog/retrofit-2-url-handling-resolution-and-parsing)
 
-    * baseUrl should always end with '/'
+   * baseUrl should always end with '/'
 
-      each endpoint definition with a relative path address will resolve correctly, because it appends itself to the base url that already defines or includes path parameters.
+     each endpoint definition with a relative path address will resolve correctly, because it appends itself to the base url that already defines or includes path parameters.
 
-      ```
-      # Good Practise
-      base url: https://futurestud.io/api/  
-      endpoint: my/endpoint  
-      Result:   https://futurestud.io/api/my/endpoint
+     ```
+     # Good Practise
+     base url: https://futurestud.io/api/  
+     endpoint: my/endpoint  
+     Result:   https://futurestud.io/api/my/endpoint
 
-      # Bad Practise
-      base url: https://futurestud.io/api  
-      endpoint: /my/endpoint  
-      Result:   https://futurestud.io/my/endpoint
-      ```
+     # Bad Practise
+     base url: https://futurestud.io/api  
+     endpoint: /my/endpoint  
+     Result:   https://futurestud.io/my/endpoint
+     ```
 
-    * dynamic urls or passing a full url
+   * dynamic urls or passing a full url
 
-      ```
-      # Example 3 — completely different url
-      base url: http://futurestud.io/api/  
-      endpoint: https://api.futurestud.io/  
-      Result:   https://api.futurestud.io/
+     ```
+     # Example 3 — completely different url
+     base url: http://futurestud.io/api/  
+     endpoint: https://api.futurestud.io/  
+     Result:   https://api.futurestud.io/
 
-      # Example 4 — Keep the base url’s scheme
-      base url: https://futurestud.io/api/  
-      endpoint: //api.futurestud.io/  
-      Result:   https://api.futurestud.io/
+     # Example 4 — Keep the base url’s scheme
+     base url: https://futurestud.io/api/  
+     endpoint: //api.futurestud.io/  
+     Result:   https://api.futurestud.io/
 
-      # Example 5 — Keep the base url’s scheme
-      base url: http://futurestud.io/api/  
-      endpoint: //api.github.com  
-      Result:   http://api.github.com 
-      ```
+     # Example 5 — Keep the base url’s scheme
+     base url: http://futurestud.io/api/  
+     endpoint: //api.github.com  
+     Result:   http://api.github.com 
+     ```
 
 29. [Retrofit 2 — Constant, Default and Logic Values for POST and PUT Requests](https://futurestud.io/blog/retrofit-2-constant-default-and-logic-values-for-post-and-put-requests)
+
+   * use @Body instead of @Field, some variables are completed automatically in model
+
+     ```
+     # Before:
+     @FormUrlEncoded
+     @POST("/feedback")
+     Call<ResponseBody> sendFeedbackSimple(  
+         @Field("osName") String osName,
+         @Field("osVersion") int osVersion,
+         @Field("device") String device,
+         @Field("message") String message,
+         @Field("userIsATalker") Boolean userIsATalker);
+         
+     # After:
+     @POST("/feedback")
+     Call<ResponseBody> sendFeedbackConstant(@Body UserFeedback feedbackObject);
+
+     public class UserFeedback {
+         private String osName = "Android";
+         private int osVersion = android.os.Build.VERSION.SDK_INT;
+         private String device = Build.MODEL;
+         private String message;
+         private boolean userIsATalker;
+
+         public UserFeedback(String message) {
+             this.message = message;
+             this.userIsATalker = (message.length() > 200);
+         }
+     }
+     ```
+
+     ​
 
 30. [Retrofit 2 — How to Download Files from Server](https://futurestud.io/blog/retrofit-2-how-to-download-files-from-server)
 
@@ -97,9 +130,39 @@
 
 32. [Retrofit 2 — Reuse and Analyze Requests](https://futurestud.io/blog/retrofit-2-reuse-and-analyze-requests-2)
 
+   * send the same request multiple times with clone method
+
+     ```
+     // correct usage:
+     originalCall.enqueue(downloadCallback);
+     // incorrect reuse:
+     // if you need to make the same request again, don't use the same originalCall again!
+     // it'll crash the app with a java.lang.IllegalStateException: Already executed.
+     originalCall.enqueue(downloadCallback); // <-- would crash the app
+
+     // correct usage with clone method
+     Call<ResponseBody> newCall = originalCall.clone();  
+     newCall.enqueue(downloadCallback);
+     ```
+
+     ​
+
 33. [Retrofit 2 — How to Change API Base Url at Runtime](https://futurestud.io/blog/retrofit-2-how-to-change-api-base-url-at-runtime-2)
 
 34. [Optional Path Parameters](https://futurestud.io/blog/retrofit-optional-path-parameters)
+
+   * if your path parameter in the middle of the url, you can not pass "" 
+
+     ```
+     public interface TaskService {  
+         @GET("tasks/{taskId}/subtasks")
+         Call<List<Task>> getSubTasks(@Path("taskId") String taskId);
+     }
+     // pass "" to taskId will get url as follow
+     https://your.api.url/tasks//subtasks 
+     ```
+
+   * you can not pass null to path parameter wherever the path parameter in
 
 35. [Retrofit 2 — How to Send Plain Text Request Body](https://futurestud.io/blog/retrofit-2-how-to-send-plain-text-request-body)
 
