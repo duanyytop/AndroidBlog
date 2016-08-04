@@ -268,7 +268,7 @@
 
 28. [Retrofit 2 — Url Handling, Resolution and Parsing](https://futurestud.io/blog/retrofit-2-url-handling-resolution-and-parsing)
 
-*    baseUrl should always end with '/'
+   * baseUrl should always end with '/'
 
      each endpoint definition with a relative path address will resolve correctly, because it appends itself to the base url that already defines or includes path parameters.
 
@@ -284,10 +284,11 @@
      Result:   https://futurestud.io/my/endpoint
      ```
 
-*    dynamic urls or passing a full url
 
-        ```
-        # Example 3 — completely different url
+   * dynamic urls or passing a full url
+
+     ```
+      # Example 3 — completely different url
         base url: http://futurestud.io/api/  
         endpoint: https://api.futurestud.io/  
         Result:   https://api.futurestud.io/
@@ -301,11 +302,13 @@
         base url: http://futurestud.io/api/  
         endpoint: //api.github.com  
         Result:   http://api.github.com 
-        ```
+     ```
 
-19. [Retrofit 2 — Constant, Default and Logic Values for POST and PUT Requests](https://futurestud.io/blog/retrofit-2-constant-default-and-logic-values-for-post-and-put-requests)
+     ​
 
-*    use @Body instead of @Field, some variables are completed automatically in model
+29. [Retrofit 2 — Constant, Default and Logic Values for POST and PUT Requests](https://futurestud.io/blog/retrofit-2-constant-default-and-logic-values-for-post-and-put-requests)
+
+   * use @Body instead of @Field, some variables are completed automatically in model
 
      ```
      # Before:
@@ -336,13 +339,13 @@
      }
      ```
 
-10. [Retrofit 2 — How to Download Files from Server](https://futurestud.io/blog/retrofit-2-how-to-download-files-from-server)
+30. [Retrofit 2 — How to Download Files from Server](https://futurestud.io/blog/retrofit-2-how-to-download-files-from-server)
 
-20. [Retrofit 2 — Cancel Requests](https://futurestud.io/blog/retrofit-2-cancel-requests)
+31. [Retrofit 2 — Cancel Requests](https://futurestud.io/blog/retrofit-2-cancel-requests)
 
-30. [Retrofit 2 — Reuse and Analyze Requests](https://futurestud.io/blog/retrofit-2-reuse-and-analyze-requests-2)
+32. [Retrofit 2 — Reuse and Analyze Requests](https://futurestud.io/blog/retrofit-2-reuse-and-analyze-requests-2)
 
-*    send the same request multiple times with clone method
+   * send the same request multiple times with clone method
 
      ```
      // correct usage:
@@ -357,11 +360,11 @@
      newCall.enqueue(downloadCallback);
      ```
 
-13. [Retrofit 2 — How to Change API Base Url at Runtime](https://futurestud.io/blog/retrofit-2-how-to-change-api-base-url-at-runtime-2)
+33. [Retrofit 2 — How to Change API Base Url at Runtime](https://futurestud.io/blog/retrofit-2-how-to-change-api-base-url-at-runtime-2)
 
-23. [Optional Path Parameters](https://futurestud.io/blog/retrofit-optional-path-parameters)
+34. [Optional Path Parameters](https://futurestud.io/blog/retrofit-optional-path-parameters)
 
-*    if your path parameter in the middle of the url, you can not pass "" 
+   * if your path parameter in the middle of the url, you can not pass "" 
 
      ```
      public interface TaskService {  
@@ -372,12 +375,12 @@
      https://your.api.url/tasks//subtasks 
      ```
 
-*    you can not pass null to path parameter wherever the path parameter in
+   * you can not pass null to path parameter wherever the path parameter in
 
-15. [Retrofit 2 — How to Send Plain Text Request Body](https://futurestud.io/blog/retrofit-2-how-to-send-plain-text-request-body)
+35. [Retrofit 2 — How to Send Plain Text Request Body](https://futurestud.io/blog/retrofit-2-how-to-send-plain-text-request-body)
 
-25. [Retrofit 2 — Introduction to (Multiple) Converters](https://futurestud.io/blog/retrofit-2-introduction-to-multiple-converters)
+36. [Retrofit 2 — Introduction to (Multiple) Converters](https://futurestud.io/blog/retrofit-2-introduction-to-multiple-converters)
 
-35. [Retrofit 2 — How to Upload Multiple Files to Server](https://futurestud.io/blog/retrofit-2-how-to-upload-multiple-files-to-server)
+37. [Retrofit 2 — How to Upload Multiple Files to Server](https://futurestud.io/blog/retrofit-2-how-to-upload-multiple-files-to-server)
 
-45. [Retrofit 2 — Passing Multiple Parts Along a File with @PartMap](https://futurestud.io/blog/retrofit-2-passing-multiple-parts-along-a-file-with-partmap)
+38. [Retrofit 2 — Passing Multiple Parts Along a File with @PartMap](https://futurestud.io/blog/retrofit-2-passing-multiple-parts-along-a-file-with-partmap)
