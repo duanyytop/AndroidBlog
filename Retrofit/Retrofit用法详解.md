@@ -232,6 +232,7 @@ Post请求需要把请求参数放置在请求体中，而非拼接在url后面�
  Call<String> addReviews(@FieldMap Map<String, String> fields);
 ```
 
+这种方式生成的body格式为text/plain,例如book=123&title=小王子&content=非常好看
 ##### 3. @Body
 
 如果Post请求参数有多个，那么统一封装到类中应该会更好，这样维护起来会非常方便
@@ -246,6 +247,15 @@ public class Reviews {
     public String title;
     public String content;
     public String rating;
+}
+```
+这种方式生成的body格式为json/plain
+
+```
+{
+   "book":"123",
+   "title":"小王子",
+   "content":"非常好看"
 }
 ```
 
